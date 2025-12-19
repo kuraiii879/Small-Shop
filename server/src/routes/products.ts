@@ -7,15 +7,8 @@ import { authenticate, AuthRequest } from '../middleware/auth';
 const router = express.Router();
 
 // Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
-});
+// Use memory storage for Vercel serverless functions (can't write to disk)
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage: storage,
@@ -32,6 +25,12 @@ const upload = multer({
     }
   }
 });
+
+// Helper function to convert buffer to base64 data URL
+function bufferToDataURL(buffer: Buffer, mimetype: string): string {
+  const base64 = buffer.toString('base64');
+  return `data:${mimetype};base64,${base64}`;
+}
 
 // GET /api/products - Public route to get all products
 router.get('/', async (req: Request, res: Response) => {
@@ -67,8 +66,14 @@ router.post('/', authenticate, upload.array('images', 5), async (req: AuthReques
       return res.status(400).json({ error: 'Name, description, price, and category are required' });
     }
 
+    // Convert uploaded images to base64 data URLs for storage
     const imageUrls = req.files && Array.isArray(req.files)
-      ? req.files.map((file: Express.Multer.File) => `/uploads/${file.filename}`)
+      ? req.files.map((file: Express.Multer.File) => {
+          if (file.buffer) {
+            return bufferToDataURL(file.buffer, file.mimetype);
+          }
+          return '';
+        }).filter(url => url !== '')
       : [];
 
     let productColors = ['Black', 'White', 'Gray', 'Navy', 'Green'];
@@ -129,9 +134,16 @@ router.put('/:id', authenticate, upload.array('images', 5), async (req: AuthRequ
       }
     }
 
-    // Handle image updates
+    // Handle image updates - convert to base64 data URLs
     if (req.files && Array.isArray(req.files) && req.files.length > 0) {
-      const newImageUrls = req.files.map((file: Express.Multer.File) => `/uploads/${file.filename}`);
+      const newImageUrls = req.files
+        .map((file: Express.Multer.File) => {
+          if (file.buffer) {
+            return bufferToDataURL(file.buffer, file.mimetype);
+          }
+          return '';
+        })
+        .filter(url => url !== '');
       
       // Merge with existing images if provided
       if (existingImages) {
