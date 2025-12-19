@@ -1,67 +1,61 @@
-import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
+import * as React from "react"
+import Autoplay from "embla-carousel-autoplay"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
 
 // Add your own images here - you can use local images or URLs
 const heroImages = [
   {
     image: '/images/image1.jpg',
-   
   },
   {
     image: '/images/image2.jpg',
-   
   },
   {
     image: '/images/image3.jpg',
-   
   },
 ];
 
 const HeroBanner = () => {
+  const plugin = React.useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true })
+  )
+
   return (
-    <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden">
-      <Carousel autoPlay={true} interval={5000} showDots={true} showArrows={true}>
-        <CarouselContent>
+    <section className="relative w-full overflow-hidden">
+      <Carousel
+        plugins={[plugin.current]}
+        className="w-full"
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+      >
+        <CarouselContent className="-ml-0">
           {heroImages.map((slide, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={index} className="pl-0 basis-full">
               <div
-                className="relative w-full h-[600px] md:h-[700px] flex items-center justify-center"
+                className="relative w-full"
                 style={{
-                  backgroundImage: `url(${slide.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
+                  aspectRatio: '1897 / 475', // Your desired aspect ratio
+                  minHeight: '200px',
                 }}
               >
+                <img
+                  src={slide.image}
+                  alt={`Hero slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                />
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/40" />
-                
-                
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
+        <CarouselPrevious className="left-4 bg-background/80 backdrop-blur-sm border-white/20" />
+        <CarouselNext className="right-4 bg-background/80 backdrop-blur-sm border-white/20" />
       </Carousel>
-      
-      <style>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out;
-        }
-        .animate-fade-in-delay {
-          animation: fade-in 0.8s ease-out 0.2s both;
-        }
-        .animate-fade-in-delay-2 {
-          animation: fade-in 0.8s ease-out 0.4s both;
-        }
-      `}</style>
     </section>
   );
 };
