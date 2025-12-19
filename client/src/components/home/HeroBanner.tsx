@@ -21,30 +21,42 @@ const HeroBanner = () => {
   )
 
   return (
-    <section className="relative w-full overflow-hidden">
+    <section className="relative w-full overflow-hidden max-w-full">
       <Carousel
         plugins={[plugin.current]}
-        className="w-full"
+        className="w-full max-w-full"
+        opts={{
+          align: 'start',
+          loop: true,
+          dragFree: false,
+          containScroll: 'trimSnaps',
+          skipSnaps: false,
+        }}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
       >
-        <CarouselContent className="-ml-0">
+        <CarouselContent className="-ml-0 rtl:-mr-0 w-full">
           {heroImages.map((slide, index) => (
-            <CarouselItem key={index} className="pl-0 basis-full">
+            <CarouselItem key={index} className="pl-0 rtl:pr-0 basis-full min-w-full flex-shrink-0 flex-grow-0">
               <div
-                className="relative w-full"
+                className="relative w-full h-full"
                 style={{
-                  aspectRatio: '1897 / 475', // Your desired aspect ratio
+                  aspectRatio: '1897 / 475',
                   minHeight: '200px',
+                  width: '100%',
+                  flexShrink: 0,
                 }}
               >
                 <img
                   src={slide.image}
                   alt={`Hero slide ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover block"
                   style={{
                     objectFit: 'cover',
                     objectPosition: 'center',
+                    width: '100%',
+                    height: '100%',
+                    display: 'block',
                   }}
                 />
                 {/* Overlay */}
