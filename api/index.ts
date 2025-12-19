@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import authRoutes from '../server/src/routes/auth';
 import productRoutes from '../server/src/routes/products';
 import orderRoutes from '../server/src/routes/orders';
+import User from '../server/src/models/User';
 
 dotenv.config();
 
@@ -67,6 +68,45 @@ app.use(async (req: Request, res: Response, next: NextFunction) => {
       error: 'Database connection failed',
       message: error.message || 'Please check MONGODB_URI environment variable',
       hint: 'Make sure MONGODB_URI is set in Vercel Environment Variables and points to a cloud MongoDB (not localhost)'
+    });
+  }
+});
+
+// Seed endpoint (for creating admin user)
+app.post('/api/seed', async (req: Request, res: Response) => {
+  try {
+    await connectToDatabase();
+    
+    const email = process.env.ADMIN_EMAIL || 'admin@store.com';
+    const password = process.env.ADMIN_PASSWORD || 'admin123';
+
+    // Check if admin already exists
+    const existingAdmin = await User.findOne({ email });
+    if (existingAdmin) {
+      return res.json({ 
+        message: 'Admin user already exists',
+        email 
+      });
+    }
+
+    // Create admin user
+    const admin = new User({
+      email,
+      password,
+      role: 'admin'
+    });
+
+    await admin.save();
+    return res.json({ 
+      message: 'Admin user created successfully',
+      email,
+      note: 'Use the ADMIN_PASSWORD from your environment variables'
+    });
+  } catch (error: any) {
+    console.error('Error seeding admin:', error);
+    return res.status(500).json({ 
+      error: 'Error seeding admin',
+      message: error.message 
     });
   }
 });

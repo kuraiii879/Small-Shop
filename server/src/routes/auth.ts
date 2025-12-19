@@ -30,11 +30,14 @@ router.post('/login', async (req: Request, res: Response) => {
     );
 
     // Set http-only cookie
+    // In production (Vercel), use secure cookies and lax sameSite for cross-domain
+    const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      secure: isProduction,
+      sameSite: isProduction ? 'lax' : 'strict', // 'lax' works better with Vercel
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      path: '/',
     });
 
     res.json({
@@ -47,7 +50,11 @@ router.post('/login', async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Server error during login' });
+    console.error('Error stack:', error.stack);
+    res.status(500).json({ 
+      error: 'Server error during login',
+      message: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 });
 
