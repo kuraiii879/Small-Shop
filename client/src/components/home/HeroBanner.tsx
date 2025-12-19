@@ -1,7 +1,4 @@
-import { Link } from 'react-router-dom';
-import { Button } from '../ui/button';
 import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
-import { ArrowRight } from 'lucide-react';
 
 // Add your own images here - you can use local images or URLs
 const heroImages = [
