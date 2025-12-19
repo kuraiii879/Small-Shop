@@ -72,17 +72,17 @@ const ProductDetail = () => {
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Column - Product Info and Order Form */}
-          <div>
-            <ProductOrderForm product={product} />
-          </div>
-
-          {/* Right Column - Product Images */}
-          <div>
+          {/* Product Images - First on mobile, second on desktop */}
+          <div className="order-1 lg:order-2">
             <ProductGallery
               imageUrls={product.imageUrls || (product.imageUrl ? [product.imageUrl] : [])}
               productName={product.name}
             />
+          </div>
+
+          {/* Product Info and Order Form - Second on mobile, first on desktop */}
+          <div className="order-2 lg:order-1">
+            <ProductOrderForm product={product} />
           </div>
         </div>
       </main>
