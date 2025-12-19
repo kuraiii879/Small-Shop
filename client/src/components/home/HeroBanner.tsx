@@ -7,18 +7,15 @@ import { ArrowRight } from 'lucide-react';
 const heroImages = [
   {
     image: '/images/image1.jpg',
-    title: 'Discover Your Style',
-    description: 'Shop the latest fashion trends and elevate your wardrobe with our curated collection of premium clothing.',
+   
   },
   {
     image: '/images/image2.jpg',
-    title: 'Premium Quality',
-    description: 'Experience the finest materials and craftsmanship in every piece we offer.',
+   
   },
   {
     image: '/images/image3.jpg',
-    title: 'New Arrivals',
-    description: 'Stay ahead of the curve with our latest collection of stylish apparel.',
+   
   },
 ];
 
@@ -43,12 +40,8 @@ const HeroBanner = () => {
                 {/* Content */}
                 <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                   <div className="max-w-3xl mx-auto">
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 animate-fade-in">
-                      {slide.title}
-                    </h1>
-                    <p className="text-xl md:text-2xl text-gray-200 mb-8 animate-fade-in-delay">
-                      {slide.description}
-                    </p>
+                    
+                    
                     <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2">
                       <Link to="/">
                         <Button size="lg" className="group">
