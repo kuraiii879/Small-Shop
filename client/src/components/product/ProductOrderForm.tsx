@@ -230,7 +230,7 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
         className="w-full bg-green-600 hover:bg-green-700 text-white"
         disabled={!selectedSize || !selectedColor || isSubmitting || !product.inStock}
       >
-        {isSubmitting ? 'Placing Order...' : 'WE LOVE TO PUBLISH'}
+        {isSubmitting ? 'Placing Order...' : 'Order Now'}
       </Button>
     </form>
   );
