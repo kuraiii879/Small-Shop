@@ -6,17 +6,17 @@ import { ArrowRight } from 'lucide-react';
 // Add your own images here - you can use local images or URLs
 const heroImages = [
   {
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80',
+    image: '/images/image1.jpg',
     title: 'Discover Your Style',
     description: 'Shop the latest fashion trends and elevate your wardrobe with our curated collection of premium clothing.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=1920&q=80',
+    image: '/images/image2.jpg',
     title: 'Premium Quality',
     description: 'Experience the finest materials and craftsmanship in every piece we offer.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&q=80',
+    image: '/images/image3.jpg',
     title: 'New Arrivals',
     description: 'Stay ahead of the curve with our latest collection of stylish apparel.',
   },
