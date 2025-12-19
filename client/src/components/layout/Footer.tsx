@@ -7,7 +7,21 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">FASHION</h3>
+            <img 
+              src="/images/logo.png" 
+              alt="FASHION Logo" 
+              className="w-[170px] h-[130px] object-contain"
+              style={{ aspectRatio: '2 / 2' }}
+              onError={(e) => {
+                // Fallback to other formats if png doesn't exist
+                const target = e.target as HTMLImageElement;
+                if (target.src.includes('.png')) {
+                  target.src = '/images/logo.jpg';
+                } else if (target.src.includes('.jpg')) {
+                  target.src = '/images/logo.svg';
+                }
+              }}
+            />
             <p className="text-sm text-muted-foreground">
               Your trusted destination for quality clothing and fashion essentials.
             </p>

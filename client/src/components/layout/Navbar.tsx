@@ -17,7 +17,21 @@ const Navbar = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold tracking-tight">FASHION</div>
+            <img 
+              src="/images/logo.png" 
+              alt="FASHION Logo" 
+              className="w-[170px] h-[130px] object-contain"
+              style={{ aspectRatio: '2 / 2' }}
+              onError={(e) => {
+                // Fallback to other formats if png doesn't exist
+                const target = e.target as HTMLImageElement;
+                if (target.src.includes('.png')) {
+                  target.src = '/images/logo.jpg';
+                } else if (target.src.includes('.jpg')) {
+                  target.src = '/images/logo.svg';
+                }
+              }}
+            />
           </Link>
 
           {/* Desktop Navigation */}
