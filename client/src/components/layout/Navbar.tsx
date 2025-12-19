@@ -5,11 +5,14 @@ import { Button } from '../ui/button';
 import { useCart } from '../../contexts/CartContext';
 import CartDrawer from '../cart/CartDrawer';
 import SearchDrawer from '../search/SearchDrawer';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { getTotalItems } = useCart();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -36,23 +39,24 @@ const Navbar = () => {
             </Link>
 
             {/* Center Navigation */}
-            <div className="hidden md:flex md:items-center md:space-x-8">
+            <div className="hidden md:flex md:items-center md:space-x-8 rtl:space-x-reverse">
               <Link
                 to="/"
                 className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
               >
-                Home
+                {t('navbar.home')}
               </Link>
               <Link
                 to="/#contact"
                 className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
               >
-                Contact Us
+                {t('navbar.contactUs')}
               </Link>
             </div>
 
             {/* Right Side Actions */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 rtl:space-x-reverse">
+              <LanguageSwitcher />
               <Button
                 variant="ghost"
                 size="icon"
@@ -78,18 +82,18 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center justify-center space-x-6 py-2 border-t">
+          <div className="md:hidden flex items-center justify-center space-x-6 rtl:space-x-reverse py-2 border-t">
             <Link
               to="/"
               className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
             >
-              Home
+              {t('navbar.home')}
             </Link>
             <Link
               to="/#contact"
               className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
             >
-              Contact Us
+              {t('navbar.contactUs')}
             </Link>
           </div>
         </div>

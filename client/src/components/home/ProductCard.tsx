@@ -7,6 +7,7 @@ import PriceTag from '../ui/PriceTag';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
 import { getImageUrl } from '../../lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface ProductCardProps {
   product: Product;
@@ -14,6 +15,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { addToCart } = useCart();
+  const { t } = useTranslation();
   // Support both imageUrls array and imageUrl string for backward compatibility
   const imageUrls = product.imageUrls || (product.imageUrl ? [product.imageUrl] : []);
   const firstImage = imageUrls.length > 0 ? imageUrls[0] : null;
@@ -31,13 +33,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400">
-              No Image
+              {t('productCard.noImage')}
             </div>
           )}
           {!product.inStock && (
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
               <Badge variant="destructive" className="text-sm px-4 py-1">
-                Out of Stock
+                {t('common.outOfStock')}
               </Badge>
             </div>
           )}
@@ -52,7 +54,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
           {product.description}
         </p>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-4 rtl:flex-row-reverse">
           <PriceTag price={product.price} />
           <Badge variant="secondary" className="text-xs">
             {product.category}
@@ -69,8 +71,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
             }
           }}
         >
-          <ShoppingCart className="mr-2 h-4 w-4" />
-          {product.inStock ? 'Buy Now' : 'Out of Stock'}
+          <ShoppingCart className="mr-2 rtl:ml-2 rtl:mr-0 h-4 w-4" />
+          {product.inStock ? t('productCard.buyNow') : t('common.outOfStock')}
         </Button>
       </CardContent>
     </Card>

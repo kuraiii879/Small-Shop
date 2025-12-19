@@ -5,6 +5,7 @@ import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PriceTag from '../ui/PriceTag';
 import { getImageUrl } from '../../lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -13,16 +14,17 @@ interface CartDrawerProps {
 
 const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
   const { items, updateQuantity, removeFromCart, getTotalPrice, getTotalItems } = useCart();
+  const { t } = useTranslation();
 
   return (
-    <Drawer isOpen={isOpen} onClose={onClose} title="Shopping Cart">
+    <Drawer isOpen={isOpen} onClose={onClose} title={t('cart.title')}>
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full text-center">
           <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
-          <p className="text-lg font-medium mb-2">Your cart is empty</p>
-          <p className="text-muted-foreground mb-4">Add some items to get started</p>
+          <p className="text-lg font-medium mb-2">{t('cart.empty')}</p>
+          <p className="text-muted-foreground mb-4">{t('cart.emptyDescription')}</p>
           <Link to="/" onClick={onClose}>
-            <Button>Continue Shopping</Button>
+            <Button>{t('common.continueShopping')}</Button>
           </Link>
         </div>
       ) : (
@@ -44,7 +46,7 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
                       />
                     ) : (
                       <div className="w-full h-full bg-muted rounded flex items-center justify-center text-xs text-muted-foreground">
-                        No Image
+                        {t('cart.noImage')}
                       </div>
                     )}
                   </div>
@@ -53,7 +55,7 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
                       {item.product.name}
                     </h3>
                     {item.size && (
-                      <p className="text-xs text-muted-foreground mb-1">Size: {item.size}</p>
+                      <p className="text-xs text-muted-foreground mb-1">{t('common.size')}: {item.size}</p>
                     )}
                     <PriceTag price={item.product.price} className="mb-2" />
                     <div className="flex items-center gap-2">
@@ -93,18 +95,18 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
 
           {/* Footer */}
           <div className="border-t pt-4 mt-4 space-y-4">
-            <div className="flex justify-between items-center text-lg font-semibold">
-              <span>Total:</span>
+            <div className="flex justify-between items-center text-lg font-semibold rtl:flex-row-reverse">
+              <span>{t('common.total')}:</span>
               <span>${getTotalPrice().toFixed(2)}</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 rtl:flex-row-reverse">
               <Link to="/" onClick={onClose} className="flex-1">
                 <Button variant="outline" className="w-full">
-                  Continue Shopping
+                  {t('common.continueShopping')}
                 </Button>
               </Link>
               <Button className="flex-1">
-                Checkout ({getTotalItems()})
+                {t('cart.checkout')} ({getTotalItems()})
               </Button>
             </div>
           </div>

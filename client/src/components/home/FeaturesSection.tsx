@@ -1,30 +1,32 @@
 import { Truck, CreditCard, HeadphonesIcon, Shield } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
-
-const features = [
-  {
-    icon: Truck,
-    title: 'Fast Delivery',
-    description: 'Free shipping on orders over $50. Express delivery available.',
-  },
-  {
-    icon: CreditCard,
-    title: 'Cash on Delivery',
-    description: 'Pay when you receive. Secure payment options available.',
-  },
-  {
-    icon: HeadphonesIcon,
-    title: '24/7 Support',
-    description: 'Our customer service team is always here to help you.',
-  },
-  {
-    icon: Shield,
-    title: 'Secure Shopping',
-    description: 'Your data is protected with industry-standard security.',
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const FeaturesSection = () => {
+  const { t } = useTranslation();
+  
+  const features = [
+    {
+      icon: Truck,
+      title: t('features.fastDelivery.title'),
+      description: t('features.fastDelivery.description'),
+    },
+    {
+      icon: CreditCard,
+      title: t('features.cashOnDelivery.title'),
+      description: t('features.cashOnDelivery.description'),
+    },
+    {
+      icon: HeadphonesIcon,
+      title: t('features.support.title'),
+      description: t('features.support.description'),
+    },
+    {
+      icon: Shield,
+      title: t('features.secureShopping.title'),
+      description: t('features.secureShopping.description'),
+    },
+  ];
   return (
     <section className="py-16 bg-muted/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

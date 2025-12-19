@@ -7,12 +7,14 @@ import ProductGallery from '../components/product/ProductGallery';
 import ProductOrderForm from '../components/product/ProductOrderForm';
 import { Button } from '../components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -36,7 +38,7 @@ const ProductDetail = () => {
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <div className="flex-1 flex items-center justify-center">
-          <div className="text-lg text-muted-foreground">Loading product...</div>
+          <div className="text-lg text-muted-foreground">{t('product.loadingProduct')}</div>
         </div>
         <Footer />
       </div>
@@ -48,11 +50,11 @@ const ProductDetail = () => {
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <div className="flex-1 flex flex-col items-center justify-center">
-          <div className="text-destructive mb-4">Error: {error || 'Product not found'}</div>
+          <div className="text-destructive mb-4">{t('common.error')}: {error || t('product.productNotFound')}</div>
           <Link to="/">
             <Button variant="outline">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
+              <ArrowLeft className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+              {t('common.back')}
             </Button>
           </Link>
         </div>
@@ -67,8 +69,8 @@ const ProductDetail = () => {
       
       <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Products
+          <ArrowLeft className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+          {t('common.backToProducts')}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

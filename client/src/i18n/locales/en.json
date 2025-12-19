@@ -1,0 +1,127 @@
+{
+  "common": {
+    "home": "Home",
+    "shop": "Shop",
+    "contact": "Contact",
+    "contactUs": "Contact Us",
+    "aboutUs": "About Us",
+    "loading": "Loading...",
+    "error": "Error",
+    "back": "Back",
+    "backToProducts": "Back to Products",
+    "backToStore": "Back to Store",
+    "continueShopping": "Continue Shopping",
+    "quantity": "Quantity",
+    "size": "Size",
+    "color": "Color",
+    "selected": "Selected",
+    "total": "Total",
+    "price": "Price",
+    "order": "Order",
+    "addToCart": "Add to Cart",
+    "selectSize": "Select a Size",
+    "outOfStock": "Out of Stock",
+    "inStock": "In Stock",
+    "itemsInStock": "items in stock",
+    "description": "Description",
+    "category": "Category",
+    "availability": "Availability",
+    "sku": "SKU",
+    "added": "Added"
+  },
+  "navbar": {
+    "home": "Home",
+    "contactUs": "Contact Us"
+  },
+  "footer": {
+    "description": "Your trusted destination for quality clothing and fashion essentials.",
+    "quickLinks": "Quick Links",
+    "legal": "Legal",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "refundPolicy": "Refund Policy",
+    "shippingPolicy": "Shipping Policy",
+    "contact": "Contact",
+    "email": "Email",
+    "phone": "Phone",
+    "hours": "Hours",
+    "allRightsReserved": "All rights reserved."
+  },
+  "home": {
+    "featuredProducts": "Featured Products",
+    "featuredProductsSubtitle": "Discover our handpicked selection of premium clothing",
+    "loadingProducts": "Loading products...",
+    "failedToLoadProducts": "Failed to load products"
+  },
+  "features": {
+    "fastDelivery": {
+      "title": "Fast Delivery",
+      "description": "Free shipping on orders over $50. Express delivery available."
+    },
+    "cashOnDelivery": {
+      "title": "Cash on Delivery",
+      "description": "Pay when you receive. Secure payment options available."
+    },
+    "support": {
+      "title": "24/7 Support",
+      "description": "Our customer service team is always here to help you."
+    },
+    "secureShopping": {
+      "title": "Secure Shopping",
+      "description": "Your data is protected with industry-standard security."
+    }
+  },
+  "product": {
+    "details": "Product Details",
+    "sizes": "Sizes",
+    "fabric": "Fabric",
+    "priceWithDelivery": "Price: {{price}}DT + {{fee}}DT delivery fee",
+    "colors": "Colors",
+    "customerInformation": "Customer information",
+    "address": "The address",
+    "nameAndSurname": "Name and surname",
+    "phoneNumber": "Phone number",
+    "orderNow": "Order Now",
+    "placingOrder": "Placing Order...",
+    "pleaseSelectSize": "Please select a size",
+    "pleaseSelectColor": "Please select a color",
+    "pleaseFillAllFields": "Please fill in all customer information fields",
+    "orderPlacedSuccess": "Order placed successfully!",
+    "failedToPlaceOrder": "Failed to place order. Please try again.",
+    "loadingProduct": "Loading product...",
+    "productNotFound": "Product not found"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "emptyDescription": "Add some items to get started",
+    "noImage": "No Image",
+    "checkout": "Checkout"
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "subtitle": "Sign in to access the admin dashboard",
+      "email": "Email address",
+      "password": "Password",
+      "signingIn": "Signing in...",
+      "signIn": "Sign in",
+      "loginFailed": "Login failed. Please try again."
+    }
+  },
+  "language": {
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "search": {
+    "placeholder": "Search products...",
+    "loading": "Loading products...",
+    "noResults": "No products found",
+    "startTyping": "Start typing to search..."
+  },
+  "productCard": {
+    "buyNow": "Buy Now",
+    "noImage": "No Image"
+  }
+}
+

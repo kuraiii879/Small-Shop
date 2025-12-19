@@ -1,0 +1,127 @@
+{
+  "common": {
+    "home": "الرئيسية",
+    "shop": "المتجر",
+    "contact": "اتصل بنا",
+    "contactUs": "اتصل بنا",
+    "aboutUs": "من نحن",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "back": "رجوع",
+    "backToProducts": "العودة إلى المنتجات",
+    "backToStore": "العودة إلى المتجر",
+    "continueShopping": "متابعة التسوق",
+    "quantity": "الكمية",
+    "size": "المقاس",
+    "color": "اللون",
+    "selected": "المحدد",
+    "total": "الإجمالي",
+    "price": "السعر",
+    "order": "طلب",
+    "addToCart": "أضف إلى السلة",
+    "selectSize": "اختر مقاساً",
+    "outOfStock": "غير متوفر",
+    "inStock": "متوفر",
+    "itemsInStock": "قطعة متوفرة",
+    "description": "الوصف",
+    "category": "الفئة",
+    "availability": "التوفر",
+    "sku": "رمز المنتج",
+    "added": "تمت الإضافة"
+  },
+  "navbar": {
+    "home": "الرئيسية",
+    "contactUs": "اتصل بنا"
+  },
+  "footer": {
+    "description": "وجهتك الموثوقة للملابس عالية الجودة وأساسيات الموضة.",
+    "quickLinks": "روابط سريعة",
+    "legal": "قانوني",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfService": "شروط الخدمة",
+    "refundPolicy": "سياسة الاسترجاع",
+    "shippingPolicy": "سياسة الشحن",
+    "contact": "اتصل بنا",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "hours": "ساعات العمل",
+    "allRightsReserved": "جميع الحقوق محفوظة."
+  },
+  "home": {
+    "featuredProducts": "منتجات مميزة",
+    "featuredProductsSubtitle": "اكتشف مجموعتنا المختارة بعناية من الملابس الفاخرة",
+    "loadingProducts": "جاري تحميل المنتجات...",
+    "failedToLoadProducts": "فشل تحميل المنتجات"
+  },
+  "features": {
+    "fastDelivery": {
+      "title": "توصيل سريع",
+      "description": "شحن مجاني للطلبات التي تزيد عن 50 دولاراً. توصيل سريع متاح."
+    },
+    "cashOnDelivery": {
+      "title": "الدفع عند الاستلام",
+      "description": "ادفع عند الاستلام. خيارات دفع آمنة متاحة."
+    },
+    "support": {
+      "title": "دعم على مدار الساعة",
+      "description": "فريق خدمة العملاء لدينا هنا دائماً لمساعدتك."
+    },
+    "secureShopping": {
+      "title": "تسوق آمن",
+      "description": "بياناتك محمية بأمان على مستوى الصناعة."
+    }
+  },
+  "product": {
+    "details": "تفاصيل المنتج",
+    "sizes": "المقاسات",
+    "fabric": "القماش",
+    "priceWithDelivery": "السعر: {{price}} د.ت + {{fee}} د.ت رسوم التوصيل",
+    "colors": "الألوان",
+    "customerInformation": "معلومات العميل",
+    "address": "العنوان",
+    "nameAndSurname": "الاسم واللقب",
+    "phoneNumber": "رقم الهاتف",
+    "orderNow": "اطلب الآن",
+    "placingOrder": "جاري تقديم الطلب...",
+    "pleaseSelectSize": "يرجى اختيار المقاس",
+    "pleaseSelectColor": "يرجى اختيار اللون",
+    "pleaseFillAllFields": "يرجى ملء جميع حقول معلومات العميل",
+    "orderPlacedSuccess": "تم تقديم الطلب بنجاح!",
+    "failedToPlaceOrder": "فشل تقديم الطلب. يرجى المحاولة مرة أخرى.",
+    "loadingProduct": "جاري تحميل المنتج...",
+    "productNotFound": "المنتج غير موجود"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلة التسوق فارغة",
+    "emptyDescription": "أضف بعض العناصر للبدء",
+    "noImage": "لا توجد صورة",
+    "checkout": "الدفع"
+  },
+  "admin": {
+    "login": {
+      "title": "تسجيل دخول المدير",
+      "subtitle": "قم بتسجيل الدخول للوصول إلى لوحة التحكم",
+      "email": "عنوان البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "signingIn": "جاري تسجيل الدخول...",
+      "signIn": "تسجيل الدخول",
+      "loginFailed": "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى."
+    }
+  },
+  "language": {
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "search": {
+    "placeholder": "ابحث عن المنتجات...",
+    "loading": "جاري تحميل المنتجات...",
+    "noResults": "لم يتم العثور على منتجات",
+    "startTyping": "ابدأ الكتابة للبحث..."
+  },
+  "productCard": {
+    "buyNow": "اشتري الآن",
+    "noImage": "لا توجد صورة"
+  }
+}
+

@@ -6,6 +6,7 @@ import { cn } from '../../lib/utils';
 import { createOrder, OrderItem } from '../../api/orders';
 import { useNavigate } from 'react-router-dom';
 import { getColorHex } from '../../lib/colors';
+import { useTranslation } from 'react-i18next';
 
 interface ProductOrderFormProps {
   product: Product;
@@ -13,6 +14,7 @@ interface ProductOrderFormProps {
 
 const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
@@ -33,17 +35,17 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
     setError(null);
 
     if (!selectedSize) {
-      setError('Please select a size');
+      setError(t('product.pleaseSelectSize'));
       return;
     }
 
     if (!selectedColor) {
-      setError('Please select a color');
+      setError(t('product.pleaseSelectColor'));
       return;
     }
 
     if (!customerName || !customerPhone || !customerAddress) {
-      setError('Please fill in all customer information fields');
+      setError(t('product.pleaseFillAllFields'));
       return;
     }
 
@@ -68,10 +70,10 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
       });
 
       // Show success and redirect
-      alert('Order placed successfully!');
+      alert(t('product.orderPlacedSuccess'));
       navigate('/');
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Failed to place order. Please try again.');
+      setError(err.response?.data?.error || t('product.failedToPlaceOrder'));
     } finally {
       setIsSubmitting(false);
     }
@@ -85,24 +87,24 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
         
         {/* Features */}
         <div className="space-y-2 mb-4">
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2 text-sm rtl:flex-row-reverse">
             <Check className="h-4 w-4 text-green-600" />
-            <span>Tailles: {sizes.join('/')}</span>
+            <span>{t('product.sizes')}: {sizes.join('/')}</span>
           </div>
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2 text-sm rtl:flex-row-reverse">
             <Check className="h-4 w-4 text-green-600" />
-            <span>Tissu: {product.category}</span>
+            <span>{t('product.fabric')}: {product.category}</span>
           </div>
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2 text-sm rtl:flex-row-reverse">
             <Check className="h-4 w-4 text-green-600" />
-            <span>Prix: {discountedPrice.toFixed(1)}DT + {deliveryFee}DT frais de livraison</span>
+            <span>{t('product.priceWithDelivery', { price: discountedPrice.toFixed(1), fee: deliveryFee })}</span>
           </div>
         </div>
       </div>
 
       {/* Size Selection */}
       <div>
-        <label className="block text-sm font-semibold mb-2">Tailles:</label>
+        <label className="block text-sm font-semibold mb-2">{t('product.sizes')}:</label>
         <div className="flex flex-wrap gap-2">
           {sizes.map((size) => (
             <button
@@ -124,7 +126,7 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
 
       {/* Color Selection */}
       <div>
-        <label className="block text-sm font-semibold mb-2">Couleurs:</label>
+        <label className="block text-sm font-semibold mb-2">{t('product.colors')}:</label>
         <div className="flex flex-wrap gap-2">
           {colors.map((color) => (
             <button
@@ -146,7 +148,7 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
           ))}
         </div>
         {selectedColor && (
-          <p className="text-sm text-muted-foreground mt-2">Selected: {selectedColor}</p>
+          <p className="text-sm text-muted-foreground mt-2">{t('common.selected')}: {selectedColor}</p>
         )}
       </div>
 
@@ -162,11 +164,11 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
 
       {/* Customer Information */}
       <div>
-        <h3 className="text-sm font-semibold mb-3">Customer information</h3>
+        <h3 className="text-sm font-semibold mb-3">{t('product.customerInformation')}</h3>
         <div className="space-y-3">
           <input
             type="text"
-            placeholder="The address"
+            placeholder={t('product.address')}
             value={customerAddress}
             onChange={(e) => setCustomerAddress(e.target.value)}
             className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
@@ -174,7 +176,7 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
           />
           <input
             type="text"
-            placeholder="Name and surname"
+            placeholder={t('product.nameAndSurname')}
             value={customerName}
             onChange={(e) => setCustomerName(e.target.value)}
             className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
@@ -182,7 +184,7 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
           />
           <input
             type="tel"
-            placeholder="Phone number"
+            placeholder={t('product.phoneNumber')}
             value={customerPhone}
             onChange={(e) => setCustomerPhone(e.target.value)}
             className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
@@ -192,8 +194,8 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
       </div>
 
       {/* Quantity Selector */}
-      <div className="flex items-center gap-4">
-        <label className="text-sm font-semibold">Quantity:</label>
+      <div className="flex items-center gap-4 rtl:flex-row-reverse">
+        <label className="text-sm font-semibold">{t('common.quantity')}:</label>
         <div className="flex items-center border rounded-md">
           <Button
             type="button"
@@ -231,7 +233,7 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
         className="w-full text-white"
         disabled={!selectedSize || !selectedColor || isSubmitting || !product.inStock}
       >
-        {isSubmitting ? 'Placing Order...' : 'Order Now'}
+        {isSubmitting ? t('product.placingOrder') : t('product.orderNow')}
       </Button>
     </form>
   );

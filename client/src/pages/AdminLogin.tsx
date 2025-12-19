@@ -4,6 +4,7 @@ import { login } from '../api/auth';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
 import { ArrowLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ const AdminLogin = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const AdminLogin = () => {
       await login({ email, password });
       navigate('/admin');
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Login failed. Please try again.');
+      setError(err.response?.data?.error || t('admin.login.loginFailed'));
     } finally {
       setLoading(false);
     }
@@ -32,9 +34,9 @@ const AdminLogin = () => {
       <div className="max-w-md w-full space-y-8">
         <Card>
           <CardHeader className="space-y-1">
-            <CardTitle className="text-3xl text-center">Admin Login</CardTitle>
+            <CardTitle className="text-3xl text-center">{t('admin.login.title')}</CardTitle>
             <CardDescription className="text-center">
-              Sign in to access the admin dashboard
+              {t('admin.login.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -46,7 +48,7 @@ const AdminLogin = () => {
               )}
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium">
-                  Email address
+                  {t('admin.login.email')}
                 </label>
                 <input
                   id="email"
@@ -55,14 +57,14 @@ const AdminLogin = () => {
                   autoComplete="email"
                   required
                   className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
-                  placeholder="Email address"
+                  placeholder={t('admin.login.email')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="space-y-2">
                 <label htmlFor="password" className="text-sm font-medium">
-                  Password
+                  {t('admin.login.password')}
                 </label>
                 <input
                   id="password"
@@ -71,13 +73,13 @@ const AdminLogin = () => {
                   autoComplete="current-password"
                   required
                   className="w-full px-3 py-2 border border-input rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
-                  placeholder="Password"
+                  placeholder={t('admin.login.password')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Signing in...' : 'Sign in'}
+                {loading ? t('admin.login.signingIn') : t('admin.login.signIn')}
               </Button>
             </form>
           </CardContent>
@@ -85,8 +87,8 @@ const AdminLogin = () => {
         <div className="text-center">
           <Link to="/">
             <Button variant="ghost" size="sm">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Store
+              <ArrowLeft className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+              {t('common.backToStore')}
             </Button>
           </Link>
         </div>

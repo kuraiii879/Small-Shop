@@ -6,11 +6,13 @@ import HeroBanner from '../components/home/HeroBanner';
 import ProductGrid from '../components/home/ProductGrid';
 import FeaturesSection from '../components/home/FeaturesSection';
 import SectionTitle from '../components/ui/SectionTitle';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -36,17 +38,17 @@ const Home = () => {
         
         <section className="py-16 container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            title="Featured Products"
-            subtitle="Discover our handpicked selection of premium clothing"
+            title={t('home.featuredProducts')}
+            subtitle={t('home.featuredProductsSubtitle')}
           />
           
           {loading ? (
             <div className="flex items-center justify-center py-12">
-              <div className="text-lg text-muted-foreground">Loading products...</div>
+              <div className="text-lg text-muted-foreground">{t('home.loadingProducts')}</div>
             </div>
           ) : error ? (
             <div className="flex items-center justify-center py-12">
-              <div className="text-destructive">Error: {error}</div>
+              <div className="text-destructive">{t('common.error')}: {error}</div>
             </div>
           ) : (
             <ProductGrid products={products} />

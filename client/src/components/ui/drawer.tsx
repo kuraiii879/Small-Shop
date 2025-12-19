@@ -43,14 +43,14 @@ const Drawer = ({ isOpen, onClose, title, children }: DrawerProps) => {
       {/* Drawer */}
       <div
         className={cn(
-          "fixed right-0 top-0 h-full w-full sm:w-96 bg-background shadow-2xl z-[9999] transform transition-transform duration-300 ease-in-out",
-          isOpen ? "translate-x-0" : "translate-x-full"
+          "fixed right-0 rtl:left-0 rtl:right-auto top-0 h-full w-full sm:w-96 bg-background shadow-2xl z-[9999] transform transition-transform duration-300 ease-in-out",
+          isOpen ? "translate-x-0 rtl:translate-x-0" : "translate-x-full rtl:-translate-x-full"
         )}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b">
+          <div className="flex items-center justify-between p-4 border-b rtl:flex-row-reverse">
             <h2 className="text-lg font-semibold">{title}</h2>
             <Button variant="ghost" size="icon" onClick={onClose}>
               <X className="h-5 w-5" />

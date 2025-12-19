@@ -53,8 +53,8 @@ const HeroBanner = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-4 bg-background/80 backdrop-blur-sm border-white/20" />
-        <CarouselNext className="right-4 bg-background/80 backdrop-blur-sm border-white/20" />
+        <CarouselPrevious className="left-4 rtl:right-4 rtl:left-auto bg-background/80 backdrop-blur-sm border-white/20" />
+        <CarouselNext className="right-4 rtl:left-4 rtl:right-auto bg-background/80 backdrop-blur-sm border-white/20" />
       </Carousel>
     </section>
   );
