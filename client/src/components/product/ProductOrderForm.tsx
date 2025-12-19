@@ -227,7 +227,8 @@ const ProductOrderForm = ({ product }: ProductOrderFormProps) => {
       <Button
         type="submit"
         size="lg"
-        className="w-full bg-green-600 hover:bg-green-700 text-white"
+        variant="default"
+        className="w-full text-white"
         disabled={!selectedSize || !selectedColor || isSubmitting || !product.inStock}
       >
         {isSubmitting ? 'Placing Order...' : 'Order Now'}
