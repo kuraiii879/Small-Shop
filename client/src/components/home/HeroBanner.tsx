@@ -37,28 +37,7 @@ const HeroBanner = () => {
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/40" />
                 
-                {/* Content */}
-                <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                  <div className="max-w-3xl mx-auto">
-                    
-                    
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2">
-                      <Link to="/">
-                        <Button size="lg" className="group">
-                          Shop Now
-                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </Button>
-                      </Link>
-                      <Button 
-                        size="lg" 
-                        variant="outline" 
-                        className="bg-transparent border-white text-white hover:bg-white hover:text-gray-900"
-                      >
-                        Learn More
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </CarouselItem>
           ))}
