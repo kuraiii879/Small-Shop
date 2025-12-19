@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { cn } from '../../lib/utils';
+import { cn, getImageUrl } from '../../lib/utils';
 
 interface ProductGalleryProps {
   imageUrls: string[];
@@ -30,7 +30,7 @@ const ProductGallery = ({ imageUrls, productName }: ProductGalleryProps) => {
       {/* Main Image */}
       <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
         <img
-          src={selectedImage ? `http://localhost:5000${selectedImage}` : undefined}
+          src={getImageUrl(selectedImage) || undefined}
           alt={productName}
           className="w-full h-full object-cover"
         />
@@ -50,25 +50,30 @@ const ProductGallery = ({ imageUrls, productName }: ProductGalleryProps) => {
             )}
           >
             <img
-              src={`http://localhost:5000${img}`}
+              src={getImageUrl(img) || undefined}
               alt={`${productName} ${index + 1}`}
               className="w-full h-full object-cover"
             />
           </button>
         ))}
         {/* Fill remaining slots if less than 5 images */}
-        {images.length < 5 && Array.from({ length: 5 - images.length }).map((_, i) => (
-          <div
-            key={`empty-${i}`}
-            className="aspect-square overflow-hidden rounded-lg border-2 border-transparent opacity-30 bg-gray-100"
-          >
-            <img
-              src={`http://localhost:5000${images[images.length - 1]}`}
-              alt={`${productName} placeholder`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
+        {images.length < 5 && Array.from({ length: 5 - images.length }).map((_, i) => {
+          const lastImage = images[images.length - 1];
+          return (
+            <div
+              key={`empty-${i}`}
+              className="aspect-square overflow-hidden rounded-lg border-2 border-transparent opacity-30 bg-gray-100"
+            >
+              {lastImage && (
+                <img
+                  src={getImageUrl(lastImage) || undefined}
+                  alt={`${productName} placeholder`}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { Badge } from '../ui/badge';
 import PriceTag from '../ui/PriceTag';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
+import { getImageUrl } from '../../lib/utils';
 
 interface ProductCardProps {
   product: Product;
@@ -16,7 +17,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   // Support both imageUrls array and imageUrl string for backward compatibility
   const imageUrls = product.imageUrls || (product.imageUrl ? [product.imageUrl] : []);
   const firstImage = imageUrls.length > 0 ? imageUrls[0] : null;
-  const imageUrl = firstImage ? `http://localhost:5000${firstImage}` : null;
+  const imageUrl = getImageUrl(firstImage);
 
   return (
     <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300">

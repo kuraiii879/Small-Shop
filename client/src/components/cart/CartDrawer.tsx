@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PriceTag from '../ui/PriceTag';
+import { getImageUrl } from '../../lib/utils';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -30,7 +31,7 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
             {items.map((item) => {
               const imageUrls = item.product.imageUrls || (item.product.imageUrl ? [item.product.imageUrl] : []);
               const firstImage = imageUrls.length > 0 ? imageUrls[0] : null;
-              const imageUrl = firstImage ? `http://localhost:5000${firstImage}` : null;
+              const imageUrl = getImageUrl(firstImage);
 
               return (
                 <div key={`${item.product._id}-${item.size || 'default'}`} className="flex gap-4 border-b pb-4">

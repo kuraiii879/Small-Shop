@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Plus, Edit, Trash2, X } from 'lucide-react';
+import { getImageUrl } from '../../lib/utils';
 
 const ProductsTab = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -383,9 +384,10 @@ const ProductsTab = () => {
                       {(() => {
                         const images = product.imageUrls || (product.imageUrl ? [product.imageUrl] : []);
                         const firstImage = images[0];
-                        return firstImage ? (
+                        const imageUrl = getImageUrl(firstImage);
+                        return imageUrl ? (
                           <img
-                            src={`http://localhost:5000${firstImage}`}
+                            src={imageUrl}
                             alt={product.name}
                             className="h-16 w-16 object-cover rounded"
                           />
